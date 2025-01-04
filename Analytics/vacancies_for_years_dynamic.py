@@ -1,4 +1,3 @@
-# СДЕЛАНО
 import pandas as pd
 import matplotlib.pyplot as plt
 import csv
@@ -18,10 +17,6 @@ with open(file_path, 'r', encoding='utf-8') as file:
     header = next(reader)
 
     for row in reader:
-        # if i == 100000:
-        #     break
-        # else:
-        #     i += 1
         if len(row) == 7:
             data.append(row)
         else:
