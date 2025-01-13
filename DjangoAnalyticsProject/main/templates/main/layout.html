@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-$END$
+    <aside>
+        <span>Бэкенд разработчик</span>
+        <h3>Навигация</h3>
+        <ul>
+            <a href="{% url 'home' %}"><li><i></i>Главная</li></a>
+            <a href="{% url 'info' %}"><li><i></i>Востребованность</li></a>
+            <a href="{% url 'geography' %}"><li><i></i>География</li></a>
+            <a href="{% url 'skills' %}"><li><i></i>Навыки</li></a>
+        </ul>
+    </aside>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 </body>
+<footer>
+    <div>
+        <div>
+            <p><i></i>Сапегин Михаил РИ-230947</p>
+        </div>
+    </div>
+</footer>
 </html>

@@ -6,5 +6,18 @@ def index(request):
     return render(request, 'main/index.html')
 
 
-def about(request):
-    return HttpResponse("<h4>about of about</h4>")
+def home(request):
+    return render(request, 'main/home.html')
+
+
+def info(request):
+    return render(request, 'main/info.html')
+
+
+def geography(request):
+    return render(request, 'main/geography.html')
+
+
+def skills(request):
+    return render(request, 'main/skills.html')
+
