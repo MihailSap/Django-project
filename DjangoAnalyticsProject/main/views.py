@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from .models import Geography, Relevance, Skills
+from .utils import get_vacancies
 
 
 def home(request):
@@ -20,7 +21,7 @@ def info(request):
 
 
 def geography(request):
-    geographypage = Geography.objects.all()[0]
+    geographypage = Geography.objects.all()
     return render(
         request,
         'main/geography.html',

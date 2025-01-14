@@ -2,31 +2,116 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        aside {
+            width: 250px;
+            background-color: #1e1e1e;
+            color: #e74c3c;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            border-right: 1px solid #333;
+        }
+
+        aside span {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        aside h3 {
+            margin-bottom: 15px;
+        }
+
+        aside ul {
+            list-style: none;
+        }
+
+        aside ul a {
+            text-decoration: none;
+            color: #e74c3c;
+            display: block;
+            padding: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        aside ul a:hover {
+            color: #ff6f61;
+            background-color: #333;
+            padding-left: 10px;
+        }
+
+        main {
+            margin-left: 270px;
+            padding: 20px;
+        }
+
+        main h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        main img {
+            max-width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
     <aside>
-        <span>Бэкенд разработчик</span>
-        <h3>Навигация</h3>
+        <span>Backend university</span>
         <ul>
-            <a href="{% url 'home' %}"><li><i></i>Главная</li></a>
-            <a href="{% url 'statistics' %}"><li><i></i>Общая статистика</li></a>
-            <a href="{% url 'info' %}"><li><i></i>Востребованность</li></a>
-            <a href="{% url 'geography' %}"><li><i></i>География</li></a>
-            <a href="{% url 'skills' %}"><li><i></i>Навыки</li></a>
-            <a href="{% url 'last_vacs' %}"><li><i></i>Последние вакансии</li></a>
+            <a href="{% url 'home' %}"><li>Главная</li></a>
+            <a href="{% url 'statistics' %}"><li>Общая статистика</li></a>
+            <a href="{% url 'info' %}"><li>Востребованность</li></a>
+            <a href="{% url 'geography' %}"><li>География</li></a>
+            <a href="{% url 'skills' %}"><li>Навыки</li></a>
+            <a href="{% url 'last_vacs' %}"><li>Последние вакансии</li></a>
         </ul>
     </aside>
     <main>
         {% block content %}
         {% endblock %}
     </main>
+    <footer>
+        <p>Сапегин Михаил РИ-230947</p>
+    </footer>
 </body>
-<footer>
-    <div>
-        <div>
-            <p><i></i>Сапегин Михаил РИ-230947</p>
-        </div>
-    </div>
-</footer>
 </html>
