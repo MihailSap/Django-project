@@ -1,5 +1,7 @@
 {% extends 'main/layout.html' %}
-{% block title %} Востребованность {% endblock %}
+{% block title %} География {% endblock %}
 {% block content %}
-    <h1>GEOGRAPHY</h1>
+    <h1>География</h1>
+    <h1>{{ geographypage.text|safe }}</h1>
+    <img src="{{ geographypage.graph.url }}" alt="graph"/>
 {% endblock %}

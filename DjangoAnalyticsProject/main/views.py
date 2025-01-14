@@ -1,9 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-
-def index(request):
-    return render(request, 'main/index.html')
+from .models import Geography, Relevance, Skills
 
 
 def home(request):
@@ -11,13 +9,41 @@ def home(request):
 
 
 def info(request):
-    return render(request, 'main/info.html')
+    infopage = Relevance.objects.all()[0]
+    return render(
+        request,
+        'main/info.html',
+        context={
+            'infopage': infopage,
+        }
+    )
 
 
 def geography(request):
-    return render(request, 'main/geography.html')
+    geographypage = Geography.objects.all()[0]
+    return render(
+        request,
+        'main/geography.html',
+        context={
+            'geographypage': geographypage,
+        }
+    )
 
 
 def skills(request):
-    return render(request, 'main/skills.html')
+    skillspage = Skills.objects.all()[0]
+    return render(
+        request,
+        'main/skills.html',
+        context={
+            'skillspage': skillspage,
+        }
+    )
 
+
+def statistics(request):
+    return render(request, 'main/statistics.html')
+
+
+def last_vacs(request):
+    return render(request, 'main/last_vacs.html')
