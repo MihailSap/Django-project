@@ -1,30 +1,98 @@
 {% extends 'main/layout.html' %}
+{% load static %}
 {% block title %}Навыки{% endblock %}
 {% block content %}
-    <h1>Навыки</h1>
-    <h2>Топ навыков за 2015</h2>
-    <img src="{{ skillspage.graph_2015.url }}">
+<style>
+    body {
+        background-color: black;
+        color: white;
+    }
 
-    <h2>Топ навыков за 2015</h2>
-    <img src="{{ skillspage.graph_2016.url }}">
+    h1 {
+        text-align: center;
+        color: crimson;
+        margin-bottom: 20px;
+    }
 
-    <h2>Топ навыков за 2015</h2>
-    <img src="{{ skillspage.graph_2017.url }}">
+    h2 {
+        text-align: center;
+        color: crimson;
+        margin-top: 30px;
+    }
 
-    <h2>Топ навыков за 2015</h2>
-    <img src="{{ skillspage.graph_2018.url }}">
+    .skills-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px; /* Расстояние между блоками */
+        margin: 20px auto;
+        max-width: 800px; /* Ограничение ширины */
+    }
 
-    <h2>Топ навыков за 2015</h2>
-    <img src="{{ skillspage.graph_2019.url }}">
+    .skill-block {
+        text-align: center;
+        background-color: #1c1c1c;
+        border: 2px solid crimson;
+        border-radius: 10px;
+        padding: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 0 10px crimson;
+    }
 
-    <h2>Топ навыков за 2015</h2>
-    <img src="{{ skillspage.graph_2020.url }}">
+    .skill-block:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px crimson;
+    }
 
-    <h2>Топ навыков за 2015</h2>
-    <img src="{{ skillspage.graph_2021.url }}">
+    .skill-block img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+</style>
 
-    <h2>Топ навыков за 2015</h2>
-    <img src="{{ skillspage.graph_2022.url }}">
-    <img src="{{ skillspage.graph_2023.url }}">
-    <img src="{{ skillspage.graph_2024.url }}">
+<h1>Навыки</h1>
+
+<div class="skills-container">
+    <div class="skill-block">
+        <h2>Топ навыков за 2015</h2>
+        <img src="{{ skillspage.graph_2015.url }}" alt="График 2015">
+    </div>
+    <div class="skill-block">
+        <h2>Топ навыков за 2016</h2>
+        <img src="{{ skillspage.graph_2016.url }}" alt="График 2016">
+    </div>
+    <div class="skill-block">
+        <h2>Топ навыков за 2017</h2>
+        <img src="{{ skillspage.graph_2017.url }}" alt="График 2017">
+    </div>
+    <div class="skill-block">
+        <h2>Топ навыков за 2018</h2>
+        <img src="{{ skillspage.graph_2018.url }}" alt="График 2018">
+    </div>
+    <div class="skill-block">
+        <h2>Топ навыков за 2019</h2>
+        <img src="{{ skillspage.graph_2019.url }}" alt="График 2019">
+    </div>
+    <div class="skill-block">
+        <h2>Топ навыков за 2020</h2>
+        <img src="{{ skillspage.graph_2020.url }}" alt="График 2020">
+    </div>
+    <div class="skill-block">
+        <h2>Топ навыков за 2021</h2>
+        <img src="{{ skillspage.graph_2021.url }}" alt="График 2021">
+    </div>
+    <div class="skill-block">
+        <h2>Топ навыков за 2022</h2>
+        <img src="{{ skillspage.graph_2022.url }}" alt="График 2022">
+    </div>
+    <div class="skill-block">
+        <h2>Топ навыков за 2023</h2>
+        <img src="{{ skillspage.graph_2023.url }}" alt="График 2023">
+    </div>
+    <div class="skill-block">
+        <h2>Топ навыков за 2024</h2>
+        <img src="{{ skillspage.graph_2024.url }}" alt="График 2024">
+    </div>
+</div>
 {% endblock %}

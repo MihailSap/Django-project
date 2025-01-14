@@ -1,7 +1,46 @@
 {% extends 'main/layout.html' %}
-{% block title %} Востребованность {% endblock %}
+{% load static %}
+{% block title %}Востребованность{% endblock %}
 {% block content %}
-    <h1>Востребованность</h1>
-    <img src="{{ infopage.graph_left.url }}"/>
-    <img src="{{ infopage.graph_right.url }}"/>
+<style>
+    body {
+        background-color: black;
+        color: white;
+    }
+
+    h1 {
+        text-align: center;
+        color: crimson;
+        margin-bottom: 20px;
+    }
+
+    .graph-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin: 20px auto;
+    }
+
+    .graph-container img {
+        max-width: 45%;
+        height: auto;
+        border: 2px solid crimson;
+        box-shadow: 0 0 10px crimson;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .graph-container img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px crimson;
+    }
+</style>
+
+<h1>Востребованность</h1>
+
+<div class="graph-container">
+    <img src="{{ infopage.graph_left.url }}" alt="График 1"/>
+    <img src="{{ infopage.graph_right.url }}" alt="График 2"/>
+</div>
 {% endblock %}
