@@ -47,4 +47,5 @@ def statistics(request):
 
 
 def last_vacs(request):
-    return render(request, 'main/last_vacs.html')
+    return render(request, 'main/last_vacs.html',
+                  context={'vacancies': get_vacancies(), })

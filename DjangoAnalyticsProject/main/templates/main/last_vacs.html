@@ -2,4 +2,11 @@
 {% block title %}Последние вакансии{% endblock %}
 {% block content %}
     <h1>Последние вакансии</h1>
+    <div>
+        {% for vacancy in vacancies %}
+            <div>
+                <h3>{{ vacancy.name }}</h3>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
