@@ -42,5 +42,9 @@
 <div class="graph-container">
     <img src="{{ infopage.graph_left.url }}" alt="График 1"/>
     <img src="{{ infopage.graph_right.url }}" alt="График 2"/>
+
+    <div style="text-align: center; top: -50px;">
+             {{ infopage.text|safe }}
+    </div>
 </div>
 {% endblock %}
