@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Hello</title>
 </head>
 <body>
-$END$
+    <h1>Login</h1>
+    {% if form.errors %}
+        <p>{{ form.errors.error }}</p>
+    {% endif %}
+    <form action="{% url 'login' %}" method = 'post'>
+        {{ form }}
+        {% csrf_token %}
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
