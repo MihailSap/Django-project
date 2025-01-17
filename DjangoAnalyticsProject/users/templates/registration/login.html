@@ -1,19 +1,63 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/css/login.css' %}">
+    <title>Вход</title>
 </head>
 <body>
-    <h1>Login</h1>
-    {% if form.errors %}
-        <p>{{ form.errors.error }}</p>
-    {% endif %}
-    <form action="{% url 'login' %}" method = 'post'>
-        {{ form }}
-        {% csrf_token %}
-        <button type="submit">Submit</button>
-    </form>
-    <a href="{% url 'register' %}">Register</a>
+    <div class="login-container">
+        <h1>Вход</h1>
+
+        <!-- Общие ошибки формы -->
+        {% if form.non_field_errors %}
+            <div class="errors">
+                {% for error in form.non_field_errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+
+            <!-- Поле "Имя пользователя" -->
+            <div class="form-group">
+                <p>Введите имя пользователя:</p>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="error">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Поле "Пароль" -->
+            <div class="form-group">
+                <p>Введите пароль:</p>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <div class="error">
+                        {% for error in form.password.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit">Войти</button>
+        </form>
+
+        <p>
+            <a href="{% url 'register' %}">Ещё нет аккаунта? Зарегистрируйтесь!</a>
+        </p>
+        <p>
+            <a href="{% url 'home' %}">Вернуться на главную</a>
+        </p>
+    </div>
 </body>
 </html>
