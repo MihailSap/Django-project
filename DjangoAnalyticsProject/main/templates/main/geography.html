@@ -1,9 +1,30 @@
 {% extends 'main/layout.html' %}
 {% load static %}
-{% block title %} География {% endblock %}
+{% block title %}География{% endblock %}
 {% block content %}
-    <h1>География</h1>
-    {% for geo in geographypage %}
-        <img src="{{ geo.graph.url }}" alt="graph"/>
-    {% endfor %}
+<div class="graph-container">
+    <div class="graph-block">
+        <h1 style="color: crimson">География</h1>
+        <img src="{% static 'main/img/Geo.jpg' %}" alt="География" onclick="openFullscreen(this)" />
+        <p>На этой странице сайта вы узнаете, как местоположение влияет на карьеру Backend разработчика</p>
+        <p>
+            <a href="#first-graph" style="color: crimson;">Зависимость зарплаты от города</a> |
+            <a href="#second-graph" style="color: crimson;">Доли вакансий по городам</a>
+        </p>
+    </div>
+
+    <div id="first-graph" class="graph-block">
+        <img src="{{ geo.graph.url }}" alt="Диаграмма" onclick="openFullscreen(this)" />
+        <div>
+            {{ geo.table|safe }}
+        </div>
+    </div>
+
+    <div id="second-graph" class="graph-block">
+        <img src="{{ geo.graph2.url }}" alt="Диаграмма" onclick="openFullscreen(this)" />
+        <div>
+            {{ geo.table2|safe }}
+        </div>
+    </div>
+</div>
 {% endblock %}

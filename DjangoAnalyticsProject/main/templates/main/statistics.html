@@ -2,5 +2,51 @@
 {% load static %}
 {% block title %}Общая статистика{% endblock %}
 {% block content %}
-    <h1>Общая статистика</h1>
+<div class="graph-container">
+    <div class="graph-block">
+        <h1 style="color: crimson">Общая статистика</h1>
+        <img src="{% static 'main/img/all_statistic.jpg' %}" alt="Вся статистика" onclick="openFullscreen(this)" />
+        <p>На этой странице вы можете ознакомиться со всей статистикой по профессии Backend разработчик</p>
+        <p>
+            <a href="#first-graph" style="color: crimson;">Динамика уровня зарплат по годам</a> |
+            <a href="#second-graph" style="color: crimson;">Динамика количества вакансий по годам</a> |
+            <a href="#third-graph" style="color: crimson;">Уровень зарплат по городам</a> |
+            <a href="#fourth-graph" style="color: crimson;">Доли вакансий по городам</a> |
+            <a href="#fifth-graph" style="color: crimson;">ТОП-20 наиболее популяных навыков</a>
+        </p>
+    </div>
+
+    <div id="first-graph" class="graph-block">
+        <img src="{{ relevance.graph_left.url }}" alt="Диаграмма" onclick="openFullscreen(this)" />
+        <div>
+            {{ relevance.table|safe }}
+        </div>
+    </div>
+    <div id="second-graph"class="graph-block">
+        <img src="{{ relevance.graph_right.url }}" alt="График 2" onclick="openFullscreen(this)" />
+        <div class="graph-table">
+            {{ relevance.table2|safe }}
+        </div>
+    </div>
+    <div id="third-graph" class="graph-block">
+        <img src="{{ geo.graph.url }}" alt="Диаграмма" onclick="openFullscreen(this)" />
+        <div>
+            {{ geo.table|safe }}
+        </div>
+    </div>
+
+    <div id="fourth-graph" class="graph-block">
+        <img src="{{ geo.graph2.url }}" alt="Диаграмма" onclick="openFullscreen(this)" />
+        <div>
+            {{ geo.table2|safe }}
+        </div>
+    </div>
+
+    {% for skill in skills %}
+    <div class="graph-block">
+        <img src="{{ skill.diagram.url }}" alt="Диаграмма {{ skill.name }}" onclick="openFullscreen(this)" >
+        {{ skill.table|safe }}
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

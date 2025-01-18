@@ -10,8 +10,6 @@
 <body>
     <div class="login-container">
         <h1>Вход</h1>
-
-        <!-- Общие ошибки формы -->
         {% if form.non_field_errors %}
             <div class="errors">
                 {% for error in form.non_field_errors %}
@@ -19,11 +17,8 @@
                 {% endfor %}
             </div>
         {% endif %}
-
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
-
-            <!-- Поле "Имя пользователя" -->
             <div class="form-group">
                 <p>Введите имя пользователя:</p>
                 {{ form.username }}
@@ -35,8 +30,6 @@
                     </div>
                 {% endif %}
             </div>
-
-            <!-- Поле "Пароль" -->
             <div class="form-group">
                 <p>Введите пароль:</p>
                 {{ form.password }}
@@ -48,10 +41,8 @@
                     </div>
                 {% endif %}
             </div>
-
             <button type="submit">Войти</button>
         </form>
-
         <p>
             <a href="{% url 'register' %}">Ещё нет аккаунта? Зарегистрируйтесь!</a>
         </p>

@@ -2,49 +2,17 @@
 {% load static %}
 {% block title %}Навыки{% endblock %}
 {% block content %}
-
-<h1>Навыки</h1>
-
-<div class="skills-container">
-    <div class="skill-block">
-        <h2>Топ навыков за 2015</h2>
-        <img src="{{ skillspage.graph_2015.url }}" alt="График 2015">
+<div class="graph-container">
+    <div class="graph-block">
+        <h1 style="color: crimson">Навыки</h1>
+        <img src="{% static 'main/img/skills.jpg' %}" alt="География" onclick="openFullscreen(this)" />
+        <p>На этой странице сайта вы узнаете, какие навыки были наиболее популяными в каждом году</p>
     </div>
-    <div class="skill-block">
-        <h2>Топ навыков за 2016</h2>
-        <img src="{{ skillspage.graph_2016.url }}" alt="График 2016">
+    {% for skill in skills %}
+    <div class="graph-block">
+        <img src="{{ skill.diagram.url }}" alt="Диаграмма {{ skill.name }}" onclick="openFullscreen(this)" >
+        {{ skill.table|safe }}
     </div>
-    <div class="skill-block">
-        <h2>Топ навыков за 2017</h2>
-        <img src="{{ skillspage.graph_2017.url }}" alt="График 2017">
-    </div>
-    <div class="skill-block">
-        <h2>Топ навыков за 2018</h2>
-        <img src="{{ skillspage.graph_2018.url }}" alt="График 2018">
-    </div>
-    <div class="skill-block">
-        <h2>Топ навыков за 2019</h2>
-        <img src="{{ skillspage.graph_2019.url }}" alt="График 2019">
-    </div>
-    <div class="skill-block">
-        <h2>Топ навыков за 2020</h2>
-        <img src="{{ skillspage.graph_2020.url }}" alt="График 2020">
-    </div>
-    <div class="skill-block">
-        <h2>Топ навыков за 2021</h2>
-        <img src="{{ skillspage.graph_2021.url }}" alt="График 2021">
-    </div>
-    <div class="skill-block">
-        <h2>Топ навыков за 2022</h2>
-        <img src="{{ skillspage.graph_2022.url }}" alt="График 2022">
-    </div>
-    <div class="skill-block">
-        <h2>Топ навыков за 2023</h2>
-        <img src="{{ skillspage.graph_2023.url }}" alt="График 2023">
-    </div>
-    <div class="skill-block">
-        <h2>Топ навыков за 2024</h2>
-        <img src="{{ skillspage.graph_2024.url }}" alt="График 2024">
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}

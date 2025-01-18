@@ -7,35 +7,128 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/skills.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/table.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/blocks.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/scroll_to_top.css' %}">
+    <style>
+        .user-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .username {
+            cursor: pointer;
+            font-weight: bold;
+            color: #fff;
+            background-color: #000;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #000;
+            border: 1px solid #900;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            z-index: 1000;
+            border-radius: 5px;
+        }
+
+        .dropdown button {
+            background-color: #900;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown button:hover {
+            background-color: #c00;
+        }
+
+        aside ul li a.active {
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Новый стиль для кнопки Login */
+        .login-button {
+            background-color: crimson; /* Цвет кнопки */
+            color: white; /* Цвет текста */
+            padding: 10px 20px; /* Отступы */
+            text-decoration: none; /* Убираем подчеркивание */
+            border-radius: 5px; /* Округлые углы */
+            display: inline-block;
+            font-size: 16px; /* Размер шрифта */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Плавные переходы */
+        }
+
+        .login-button:hover {
+            background-color: #d10000; /* Цвет кнопки при наведении */
+            transform: scale(1.05); /* Немного увеличиваем кнопку */
+        }
+    </style>
     <script src="{% static 'main/js/main.js' %}" defer></script>
+    <script src="{% static 'main/js/fullscreen.js' %}" defer></script>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('dropdown-menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('dropdown-menu');
+            const username = document.querySelector('.username');
+
+            if (!dropdown.contains(event.target) && !username.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>
 </head>
 <body>
     <header>
         <button onclick="toggleSidebar()">☰</button>
         Backend разработчик
         {% if user.is_authenticated %}
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
-{% else %}
-    <a href="{% url 'login' %}">Login</a>
-{% endif %}
+        <div class="user-menu">
+            <span class="username" onclick="toggleMenu()">{{ user.username }}</span>
+            <div class="dropdown" id="dropdown-menu">
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Выйти</button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <a href="{% url 'login' %}" class="login-button">Login</a> <!-- Применён новый класс -->
+        {% endif %}
     </header>
     <aside>
         <ul>
-            <li><a href="{% url 'home' %}">Главная</a></li>
-            <li><a href="{% url 'statistics' %}">Общая статистика</a></li>
-            <li><a href="{% url 'info' %}">Востребованность</a></li>
-            <li><a href="{% url 'geography' %}">География</a></li>
-            <li><a href="{% url 'skills' %}">Навыки</a></li>
-            <li><a href="{% url 'last_vacs' %}">Последние вакансии</a></li>
+            <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Главная</a></li>
+            <li><a href="{% url 'statistics' %}" class="{% if request.resolver_match.url_name == 'statistics' %}active{% endif %}">Общая статистика</a></li>
+            <li><a href="{% url 'info' %}" class="{% if request.resolver_match.url_name == 'info' %}active{% endif %}">Востребованность</a></li>
+            <li><a href="{% url 'geography' %}" class="{% if request.resolver_match.url_name == 'geography' %}active{% endif %}">География</a></li>
+            <li><a href="{% url 'skills' %}" class="{% if request.resolver_match.url_name == 'skills' %}active{% endif %}">Навыки</a></li>
+            <li><a href="{% url 'last_vacs' %}" class="{% if request.resolver_match.url_name == 'last_vacs' %}active{% endif %}">Последние вакансии</a></li>
         </ul>
-
     </aside>
+
     <main>
         {% block content %}
         {% endblock %}
+        <div class="fullscreen-overlay" id="fullscreenOverlay">
+            <button class="close-button" onclick="closeFullscreen()">×</button>
+            <img id="fullscreenImage" />
+        </div>
+        <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()">↑</button>
     </main>
     <footer>
         <p>Сапегин Михаил Евгеньевич РИ-230947</p>

@@ -2,49 +2,29 @@
 {% load static %}
 {% block title %}Востребованность{% endblock %}
 {% block content %}
-<style>
-    body {
-        background-color: black;
-        color: white;
-    }
-
-    h1 {
-        text-align: center;
-        color: crimson;
-        margin-bottom: 20px;
-    }
-
-    .graph-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        margin: 20px auto;
-    }
-
-    .graph-container img {
-        max-width: 45%;
-        height: auto;
-        border: 2px solid crimson;
-        box-shadow: 0 0 10px crimson;
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .graph-container img:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px crimson;
-    }
-</style>
-
-<h1>Востребованность</h1>
-
 <div class="graph-container">
-    <img src="{{ infopage.graph_left.url }}" alt="График 1"/>
-    <img src="{{ infopage.graph_right.url }}" alt="График 2"/>
+    <div class="graph-block">
+        <h1 style="color: crimson">Востребованность</h1>
+        <img src="{% static 'main/img/relevance.jpeg' %}" alt="География" onclick="openFullscreen(this)" />
+        <p>На этой странице сайта вы узнаете, как со временем появлялась всё большая и большая востребованность в Backend разработчиках</p>
+        <p>
+            <a href="#first-graph" style="color: crimson;">Динамика уровня зарплат по годам</a> |
+            <a href="#second-graph" style="color: crimson;">Динамика количества вакансий по годам</a>
+        </p>
+    </div>
 
-    <div style="text-align: center; top: -50px;">
-             {{ infopage.text|safe }}
+
+    <div id="first-graph" class="graph-block">
+        <img src="{{ relevance.graph_left.url }}" alt="Диаграмма" onclick="openFullscreen(this)" />
+        <div>
+            {{ relevance.table|safe }}
+        </div>
+    </div>
+    <div id="second-graph"class="graph-block">
+        <img src="{{ relevance.graph_right.url }}" alt="График 2" onclick="openFullscreen(this)" />
+        <div class="graph-table">
+            {{ relevance.table2|safe }}
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from .models import Geography, Relevance, Skills
+from .models import Geography, Relevance, Skill
 from .utils import get_vacancies
 
 
@@ -10,42 +10,43 @@ def home(request):
 
 
 def info(request):
-    infopage = Relevance.objects.all()[0]
-    return render(
-        request,
-        'main/info.html',
-        context={
-            'infopage': infopage,
-        }
-    )
+    relevance = Relevance.objects.all()[0]
+    context = {
+        'relevance': relevance
+    }
+    return render(request, 'main/info.html', context)
 
 
 def geography(request):
-    geographypage = Geography.objects.all()
-    return render(
-        request,
-        'main/geography.html',
-        context={
-            'geographypage': geographypage,
-        }
-    )
+    geo = Geography.objects.all()[0]
+    context = {
+        'geo': geo,
+    }
+    return render(request, 'main/geography.html', context)
 
 
 def skills(request):
-    skillspage = Skills.objects.all()[0]
-    return render(
-        request,
-        'main/skills.html',
-        context={
-            'skillspage': skillspage,
-        }
-    )
+    skills = Skill.objects.all()
+    context = {
+        'skills': skills,
+    }
+    return render(request, 'main/skills.html', context)
 
 
 def statistics(request):
-    return render(request, 'main/statistics.html')
+    skills = Skill.objects.all()
+    geo = Geography.objects.all()[0]
+    relevance = Relevance.objects.all()[0]
+    context = {
+        'skills': skills,
+        'geo': geo,
+        'relevance': relevance,
+    }
+    return render(request, 'main/statistics.html', context)
 
 
 def last_vacs(request):
-    return render(request, 'main/last_vacs.html',
-                  context={'vacancies': get_vacancies(), })
+    context = {
+        'vacancies': get_vacancies()
+    }
+    return render(request, 'main/last_vacs.html', context)
