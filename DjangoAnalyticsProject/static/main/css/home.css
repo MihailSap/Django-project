@@ -1,0 +1,16 @@
+.content-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.image-right {
+    width: 40%;
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+}
+.large-text {
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
