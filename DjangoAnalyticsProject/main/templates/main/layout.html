@@ -114,7 +114,7 @@
         <ul>
             <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Главная</a></li>
             <li><a href="{% url 'statistics' %}" class="{% if request.resolver_match.url_name == 'statistics' %}active{% endif %}">Общая статистика</a></li>
-            <li><a href="{% url 'info' %}" class="{% if request.resolver_match.url_name == 'info' %}active{% endif %}">Востребованность</a></li>
+            <li><a href="{% url 'relevance' %}" class="{% if request.resolver_match.url_name == 'info' %}active{% endif %}">Востребованность</a></li>
             <li><a href="{% url 'geography' %}" class="{% if request.resolver_match.url_name == 'geography' %}active{% endif %}">География</a></li>
             <li><a href="{% url 'skills' %}" class="{% if request.resolver_match.url_name == 'skills' %}active{% endif %}">Навыки</a></li>
             <li><a href="{% url 'last_vacs' %}" class="{% if request.resolver_match.url_name == 'last_vacs' %}active{% endif %}">Последние вакансии</a></li>

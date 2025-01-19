@@ -84,7 +84,7 @@ df['year'] = df['published_at'].dt.year
 salary_by_year = df.groupby('year')['salary_rub'].mean().sort_index()
 
 plt.figure(figsize=(12, 6))
-bars = plt.bar(salary_by_year.index, salary_by_year.values, color='blue')
+bars = plt.bar(salary_by_year.index, salary_by_year.values, color='red')
 
 for bar in bars:
     height = bar.get_height()
@@ -97,4 +97,5 @@ plt.xticks(salary_by_year.index, rotation=45)
 plt.grid(True, axis='y', linestyle='--', alpha=0.7)
 
 plt.tight_layout()
+plt.savefig('salary_trends.png', format='png')
 plt.show()

@@ -1,3 +1,4 @@
+# ГОТОВО!!! УРА!!!
 import pandas as pd
 import matplotlib.pyplot as plt
 import csv
@@ -6,14 +7,22 @@ from collections import Counter
 file_path = 'vacancies_2024.csv'
 data = []
 
+keywords = [
+    'backend', 'бэкэнд', 'бэкенд', 'бекенд', 'бекэнд',
+    'back end', 'бэк энд', 'бэк енд', 'django',
+    'flask', 'laravel', 'yii', 'symfony'
+]
+
+file_path = 'vacancies_2024.csv'
+data = []
 with open(file_path, 'r', encoding='utf-8') as file:
     reader = csv.reader(file)
     header = next(reader)
     for row in reader:
         if len(row) == 7:
-            data.append(row)
-        else:
-            print(f"Пропущенная строка: {row}")
+            first_column = row[0].split(',')[0].lower()
+            if any(keyword.lower() in first_column for keyword in keywords):
+                data.append(row)
 
 df = pd.DataFrame(data, columns=header)
 df['published_at'] = pd.to_datetime(df['published_at'], format='%Y-%m-%dT%H:%M:%S%z', errors='coerce', utc=True)
@@ -38,7 +47,7 @@ for year in range(2003, 2024 + 1):
     skill_names, skill_values = zip(*top_skills)
 
     plt.figure(figsize=(12, 8))
-    plt.barh(skill_names, skill_values, color='skyblue')
+    plt.barh(skill_names, skill_values, color='red')
     plt.xlabel('Частота', fontsize=14)
     plt.ylabel('Навыки', fontsize=14)
     plt.title(f'Топ-20 навыков в вакансиях за {year} год', fontsize=16)
@@ -48,5 +57,5 @@ for year in range(2003, 2024 + 1):
         plt.text(v + 1, i, str(v), va='center', fontsize=10)
 
     plt.tight_layout()
-    plt.savefig(f'skills_{year}.png')  # Сохранение графика в файл
+    plt.savefig(f'skills_{year}.png')
     plt.show()

@@ -3,16 +3,6 @@
 {% block title %}Последние вакансии{% endblock %}
 {% block content %}
 <style>
-    body {
-        background-color: black;
-        color: white;
-    }
-
-    h1 {
-        text-align: center;
-        color: crimson;
-        margin-bottom: 20px;
-    }
 
     .vacancies-container {
         display: flex;
@@ -46,7 +36,7 @@
         margin: 5px 0;
     }
 
-    .vacancy-card b {
+    .vacancy-card strong {
         color: crimson;
     }
 </style>
@@ -57,13 +47,13 @@
     {% for vacancy in vacancies %}
         <div class="vacancy-card">
             <h2>{{ vacancy.name }}</h2>
-            <p>{{ vacancy.description|safe }}</p>
+            <p><strong>Описание: </strong>{{ vacancy.description|safe }}</p>
             <p><strong>Условия:</strong></p>
-            <p><b>Навыки: </b>{{ vacancy.key_skills }}</p>
-            <p><b>Компания: </b>{{ vacancy.employer.name }}</p>
-            <p><b>Оклад:</b> {{ vacancy.salary }}</p>
-            <p><b>Расположение: </b> {{ vacancy.area.name }}</p>
-            <p><b>Дата публикации вакансии: </b> {{ vacancy.published_at }}</p>
+            <p><strong>Навыки: </strong>{{ vacancy.key_skills }}</p>
+            <p><strong>Компания: </strong>{{ vacancy.employer.name }}</p>
+            <p><strong>Оклад:</strong> {{ vacancy.salary }}</p>
+            <p><strong>Регион: </strong> {{ vacancy.area.name }}</p>
+            <p><strong>Дата публикации вакансии: </strong>{{ vacancy.published_at }}</p>
         </div>
     {% endfor %}
 </div>

@@ -13,7 +13,6 @@ keywords = [
 data = []
 file_path = 'vacancies_2024.csv'
 
-
 with open(file_path, 'r', encoding='utf-8') as file:
     reader = csv.reader(file)
     header = next(reader)
@@ -46,17 +45,24 @@ top_20_cities = vacancies_by_city.head(20)
 other_cities_count = vacancies_by_city.iloc[20:].sum()
 vacancies_with_other = pd.concat([top_20_cities, pd.Series({'Другие': other_cities_count})])
 
+# Сохранение графика "Топ-20 городов + остальные по количеству вакансий"
 plt.figure(figsize=(12, 6))
-vacancies_with_other.plot(kind='bar', color='blue')
+ax = vacancies_with_other.plot(kind='bar', color='red')
 plt.title('Топ-20 городов + остальные по количеству вакансий', fontsize=16)
 plt.xlabel('Город', fontsize=14)
 plt.ylabel('Количество вакансий', fontsize=14)
 plt.xticks(rotation=90)
 plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+
+# Добавление количества над каждым столбцом
+for i, v in enumerate(vacancies_with_other):
+    ax.text(i, v + 0.5, str(v), color='black', ha='center')
+
 plt.tight_layout()
-plt.show()
+plt.savefig('top_20_cities_bar_chart.png', dpi=300)
+plt.close()
 
-
+# Сохранение графика "Доля вакансий по городам"
 colors = pyplot.get_cmap('tab20b', len(vacancies_with_other)).colors
 plt.figure(figsize=(8, 8))
 vacancies_with_other.plot(
@@ -69,4 +75,5 @@ vacancies_with_other.plot(
 plt.title('Доля вакансий по городам', fontsize=16)
 plt.ylabel('')
 plt.tight_layout()
-plt.show()
+plt.savefig('vacancies_pie_chart.png', dpi=300)
+plt.close()

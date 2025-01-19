@@ -9,7 +9,7 @@ def home(request):
     return render(request, 'main/home.html')
 
 
-def info(request):
+def relevance(request):
     relevance = Relevance.objects.all()[0]
     context = {
         'relevance': relevance

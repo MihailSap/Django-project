@@ -90,7 +90,7 @@ salary_by_city = df.groupby('area_name')['salary_rub'].mean().sort_values(ascend
 top_20_cities = salary_by_city
 
 plt.figure(figsize=(12, 6))
-bars = plt.bar(top_20_cities.index, top_20_cities.values, color='orange', label='Средняя зарплата')
+bars = plt.bar(top_20_cities.index, top_20_cities.values, color=['red'] * (len(top_20_cities) // 2 + 1), label='Средняя зарплата')
 
 for bar in bars:
     height = bar.get_height()
@@ -103,4 +103,5 @@ plt.xticks(rotation=90)
 plt.grid(True, axis='y', linestyle='--', alpha=0.7)
 plt.legend()
 plt.tight_layout()
+plt.savefig('salary_cities.png', format='png')
 plt.show()
