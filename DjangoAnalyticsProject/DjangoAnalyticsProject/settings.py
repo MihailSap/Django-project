@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vr=r0bqr#1h)9!q&&si3t)z%*pn@!1c*r5x*^rhk*6fe8hy&kn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mihail2005.pythonanywhere.com']
 
 # Необходимо для регистрации
 AUTH_USER_MODEL = 'users.User'
@@ -127,8 +127,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 
